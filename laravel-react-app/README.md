@@ -1,58 +1,187 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel + React (Inertia.js) Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Modern full-stack application built with Laravel 13, React 18, Inertia.js, and Tailwind CSS.
 
-## About Laravel
+## 🚀 Deployment Ready
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This application is configured for deployment on multiple platforms with Supabase PostgreSQL database.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Quick Deploy Options:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Railway (Recommended)** - Full PHP + PostgreSQL support
+2. **Heroku** - Classic platform
+3. **Vercel** - Static assets only (requires separate backend)
 
-## Learning Laravel
+📖 **See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions**  
+📖 **See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for database setup**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 13 (PHP 8.3)
+- **Frontend**: React 18 + Inertia.js
+- **Styling**: Tailwind CSS 3
+- **Build Tool**: Vite 8
+- **Database**: PostgreSQL (Supabase) / SQLite (local)
+- **Authentication**: Laravel Breeze + Sanctum
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 📋 Features
 
-## Agentic Development
+- ✅ User Authentication (Login/Register)
+- ✅ Dashboard with Sidebar Navigation
+- ✅ Server-Side Rendering with Inertia.js
+- ✅ Responsive Design
+- ✅ Session Management
+- ✅ Queue System
+- ✅ Cache System
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🏃 Local Development
 
+### Prerequisites
+- PHP 8.3+
+- Composer
+- Node.js 20+
+- SQLite (default) or PostgreSQL
+
+### Installation
+
+1. Clone the repository:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/christianrenz210/laravel-react-app.git
+cd laravel-react-app
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Install dependencies:
+```bash
+composer install
+npm install
+```
 
-## Contributing
+3. Setup environment:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Create database:
+```bash
+touch database/database.sqlite
+php artisan migrate
+```
 
-## Code of Conduct
+5. Build frontend assets:
+```bash
+npm run build
+# or for development with hot reload
+npm run dev
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. Start the server:
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+Visit: `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📁 Project Structure
 
-## License
+```
+laravel-react-app/
+├── app/                    # Laravel application logic
+├── resources/
+│   ├── js/                # React components
+│   │   ├── Components/   # Reusable React components
+│   │   ├── Layouts/      # Page layouts
+│   │   └── Pages/        # Inertia pages
+│   └── css/              # Styles
+├── routes/                # Laravel routes
+├── database/
+│   └── migrations/       # Database migrations
+├── public/               # Public assets
+└── config/               # Configuration files
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🗄️ Database Migrations
+
+The application includes these database tables:
+- `users` - User authentication
+- `sessions` - Session management
+- `password_reset_tokens` - Password resets
+- `cache` - Application cache
+- `jobs` - Queue jobs
+- `failed_jobs` - Failed queue jobs
+
+## 🔧 Available Commands
+
+```bash
+# Development
+php artisan serve              # Start Laravel server
+npm run dev                    # Start Vite dev server
+
+# Production Build
+npm run build                  # Build frontend assets
+php artisan config:cache       # Cache configuration
+php artisan route:cache        # Cache routes
+php artisan view:cache         # Cache views
+
+# Database
+php artisan migrate            # Run migrations
+php artisan migrate:fresh      # Fresh migration
+php artisan db:seed            # Seed database
+
+# Maintenance
+php artisan optimize:clear     # Clear all caches
+php artisan queue:work         # Process queue jobs
+php artisan tinker             # Laravel REPL
+```
+
+## 🌐 Deployment
+
+### Railway Deployment (Recommended)
+
+1. Create a [Supabase](https://supabase.com) database
+2. Deploy to [Railway](https://railway.app)
+3. Configure environment variables
+4. Migrations run automatically
+
+### Environment Variables
+
+```env
+APP_NAME="Laravel React App"
+APP_ENV=production
+APP_KEY=base64:your-key-here
+APP_DEBUG=false
+APP_URL=https://your-app.railway.app
+
+DB_CONNECTION=pgsql
+DB_HOST=db.xxxxx.supabase.co
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=postgres
+DB_PASSWORD=your-password
+```
+
+## 📝 Documentation
+
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Complete deployment guide
+- [SUPABASE_SETUP.md](SUPABASE_SETUP.md) - Database setup guide
+- [SIDEBAR_IMPLEMENTATION.md](SIDEBAR_IMPLEMENTATION.md) - Sidebar feature docs
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🔗 Links
+
+- **Repository**: https://github.com/christianrenz210/laravel-react-app
+- **Laravel**: https://laravel.com
+- **React**: https://react.dev
+- **Inertia.js**: https://inertiajs.com
+- **Tailwind CSS**: https://tailwindcss.com
